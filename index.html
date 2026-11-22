@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AyurParam - AI Prakriti Checker</title>
+<style>
+body{font-family:Arial;background:#fff8e7;margin:0;padding:15px}
+.box{max-width:600px;margin:auto;background:white;padding:20px;border-radius:15px;box-shadow:0 0 15px #ddd}
+h1{color:#2e7d32;text-align:center} h2{color:#ef6c00}
+button{background:#2e7d32;color:white;border:none;padding:12px 20px;border-radius:8px;width:100%;font-size:17px;margin-top:15px;cursor:pointer}
+select{width:100%;padding:10px;margin:8px 0;border-radius:8px;border:1px solid #ccc}
+.result{background:#e8f5e9;padding:15px;border-radius:10px;margin-top:15px;display:none}
+</style>
+</head>
+<body>
+<div class="box">
+<h1>🌿 AyurParam</h1>
+<p style="text-align:center"><b>AI Prakriti Checker | AyushTech Innovate - Techfest IIT Bombay</b></p>
+<p>Apna Naam: <input id="name" placeholder="Apna naam likho" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc"></p>
+
+<label>1. Tumhara Sharir kaisa hai?</label>
+<select id="q1"><option value="vata">Patla, halka</option><option value="pitta">Medium, garm rehta hai</option><option value="kapha">Bhara hua, bhari</option></select>
+
+<label>2. Bhook kaisi lagti hai?</label>
+<select id="q2"><option value="vata">Kabhi zyada, kabhi kam</option><option value="pitta">Bahut tez, time pe chahiye</option><option value="kapha">Kam, der se lagti hai</option></select>
+
+<label>3. Neend kaisi aati hai?</label>
+<select id="q3"><option value="vata">Kam, tootti hui</option><option value="pitta">Theek, 6-7 ghante</option><option value="kapha">Gehri, 8+ ghante</option></select>
+
+<label>4. Gussa kaisa aata hai?</label>
+<select id="q4"><option value="vata">Jaldi chinta, dar</option><option value="pitta">Jaldi gussa, tez</option><option value="kapha">Shant, der se gussa</option></select>
+
+<label>5. Skin kaisi hai?</label>
+<select id="q5"><option value="vata">Rukhi, thandi</option><option value="pitta">Garm, daane wali</option><option value="kapha">Mulayam, thandi</option></select>
+
+<label>6. Mausam kya pasand hai?</label>
+<select id="q6"><option value="vata">Garm pasand</option><option value="pitta">Thanda pasand</option><option value="kapha">Garm aur sukha pasand</option></select>
+
+<button onclick="check()">Meri Prakriti Check Karo</button>
+
+<div id="res" class="result"></div>
+</div>
+
+<script>
+function check(){
+let v=0,p=0,k=0;
+for(let i=1;i<=6;i++){
+let val=document.getElementById("q"+i).value;
+if(val=="vata") v++; if(val=="pitta") p++; if(val=="kapha") k++;
+}
+let name=document.getElementById("name").value || "Dost";
+let prakriti="", diet="", herb="", routine="";
+if(v>=p && v>=k){prakriti="VATA"; diet="Ghee, doodh, garam khana, badam, khajoor. Thanda aur sukha khana kam karo."; herb="Ashwagandha aur Brahmi"; routine="Roz 7-8 ghante so, tel malish kar, garam paani pi.";}
+else if(p>=v && p>=k){prakriti="PITTA"; diet="Nariyal paani, kheera, doodh, meetha. Mirchi, khatta, tala hua kam karo."; herb="Amla aur Shatavari"; routine="Dhoop se bacho, thanda khana khao, gussa kam karo.";}
+else{prakriti="KAPHA"; diet="Halka khana, adrak chai, shahad, hari sabzi. Meetha aur tala hua band."; herb="Trikatu aur Giloy"; routine="Subah jaldi utho, 30 min walk / yoga karo.";}
+
+document.getElementById("res").style.display="block";
+document.getElementById("res").innerHTML="<h2>Namaste "+name+"! Tumhari Prakriti hai: "+prakriti+"</h2><b>🍽️ Diet:</b> "+diet+"<br><br><b>🌿 Ayurvedic Herb:</b> "+herb+"<br><br><b>☀️ Dincharya:</b> "+routine+"<br><br><small>Note: Ye AI based general jankari hai, bimari ke liye doctor se salah lein.</small>";
+}
+</script>
+</body>
+</html>
